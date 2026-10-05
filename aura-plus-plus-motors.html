@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura++ Motors - Premium Luxury Performance | Presented by Divyanshu Kumawat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #0a0e27;
+            --primary-black: #000000;
+            --accent-red: #e63946;
+            --accent-gold: #d4af37;
+            --text-light: #ffffff;
+            --text-muted: #a0a0a0;
+            --glass-light: rgba(255, 255, 255, 0.1);
+            --glass-dark: rgba(0, 0, 0, 0.4);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--primary-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ============ NAVIGATION ============ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            background: transparent;
+            backdrop-filter: blur(0px);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        nav.scrolled {
+            background: rgba(10, 14, 39, 0.7);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-red);
+            transition: width 0.4s ease;
+        }
+
+        .logo:hover::after {
+            width: 100%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-red);
+            transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-red);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+            .logo {
+                font-size: 1.2rem;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* ============ HERO SECTION ============ */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0d0f1f 100%);
+        }
+
+        .hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.2s forwards;
+        }
+
+        .hero-text p {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.4s forwards;
+        }
+
+        .hero-presenter {
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+            margin-bottom: 1rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: var(--accent-red);
+            color: var(--text-light);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #ff4444;
+            z-index: -1;
+            transition: left 0.4s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(230, 57, 70, 0.4);
+        }
+
+        .btn-primary:hover::before {
+            left: 0;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--accent-gold);
+        }
+
+        .btn-secondary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-gold);
+            z-index: -1;
+            transition: left 0.4s ease;
+        }
+
+        .btn-secondary:hover {
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-secondary:hover::after {
+            left: 0;
+        }
+
+        .hero-car {
+            position: absolute;
+            bottom: 5%;
+            right: 10%;
+            width: 500px;
+            height: 350px;
+            perspective: 1000px;
+            opacity: 0;
+            animation: fadeIn 1.2s ease-out 0.8s forwards;
+        }
+
+        @media (max-width: 1024px) {
+            .hero-car {
+                width: 350px;
+                height: 250px;
+                right: 5%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-car {
+                display: none;
+            }
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            .hero-text p {
+                font-size: 1rem;
+            }
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        /* ============ 3D CAR REPRESENTATION (PORSCHE-INSPIRED) ============ */
+        .car-3d {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+
+        .car-body {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            animation: carFloat 4s ease-in-out infinite;
+        }
+
+        .car-shadow {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 420px;
+            height: 60px;
+            background: radial-gradient(ellipse at center, rgba(230, 57, 70, 0.3) 0%, transparent 70%);
+            filter: blur(20px);
+            border-radius: 50%;
+        }
+
+        .car-main {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 380px;
+            height: 160px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            border-radius: 70% 70% 35% 35%;
+            box-shadow: 
+                inset -30px -30px 60px rgba(0, 0, 0, 0.8),
+                inset 20px 20px 40px rgba(255, 255, 255, 0.1),
+                0 20px 60px rgba(230, 57, 70, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .car-main::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 5%;
+            width: 90%;
+            height: 35%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 60%);
+            border-radius: 50%;
+        }
+
+        .car-main::after {
+            content: '';
+            position: absolute;
+            top: 60%;
+            left: 20%;
+            width: 60%;
+            height: 20%;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.3));
+            border-radius: 50%;
+        }
+
+        .car-windshield {
+            position: absolute;
+            top: 20%;
+            left: 32%;
+            width: 35%;
+            height: 45%;
+            background: linear-gradient(135deg, rgba(100, 200, 255, 0.25), rgba(50, 150, 255, 0.1));
+            border-radius: 50% 50% 40% 35%;
+            box-shadow: inset 0 0 25px rgba(255, 255, 255, 0.25);
+        }
+
+        .car-hood {
+            position: absolute;
+            top: 38%;
+            left: 2%;
+            width: 32%;
+            height: 28%;
+            background: linear-gradient(90deg, #0f3460, #1a1a2e);
+            border-radius: 60% 40% 0 0;
+            box-shadow: inset -5px -5px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        .car-hood::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.15), transparent);
+            border-radius: 60% 40% 0 0;
+        }
+
+        .car-headlight-left {
+            position: absolute;
+            top: 32%;
+            left: 5%;
+            width: 14%;
+            height: 20%;
+            background: radial-gradient(ellipse at 35% 35%, rgba(255, 200, 100, 0.9), rgba(255, 150, 0, 0.4), transparent);
+            border-radius: 50%;
+            filter: blur(2px);
+            box-shadow: 0 0 25px rgba(255, 150, 0, 0.7);
+        }
+
+        .car-headlight-right {
+            position: absolute;
+            top: 32%;
+            right: 5%;
+            width: 14%;
+            height: 20%;
+            background: radial-gradient(ellipse at 35% 35%, rgba(255, 200, 100, 0.9), rgba(255, 150, 0, 0.4), transparent);
+            border-radius: 50%;
+            filter: blur(2px);
+            box-shadow: 0 0 25px rgba(255, 150, 0, 0.7);
+        }
+
+        .car-wheel-left {
+            position: absolute;
+            bottom: 8px;
+            left: 12%;
+            width: 75px;
+            height: 75px;
+            background: radial-gradient(circle at 30% 30%, rgba(120, 120, 120, 0.9), #1a1a1a);
+            border-radius: 50%;
+            box-shadow: inset -10px -10px 20px rgba(0, 0, 0, 0.95), inset 5px 5px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .car-wheel-left::before {
+            content: '';
+            position: absolute;
+            inset: 12%;
+            background: radial-gradient(circle, #000000, #0a0a0a);
+            border-radius: 50%;
+            box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.9);
+        }
+
+        .car-wheel-right {
+            position: absolute;
+            bottom: 8px;
+            right: 12%;
+            width: 75px;
+            height: 75px;
+            background: radial-gradient(circle at 30% 30%, rgba(120, 120, 120, 0.9), #1a1a1a);
+            border-radius: 50%;
+            box-shadow: inset -10px -10px 20px rgba(0, 0, 0, 0.95), inset 5px 5px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .car-wheel-right::before {
+            content: '';
+            position: absolute;
+            inset: 12%;
+            background: radial-gradient(circle, #000000, #0a0a0a);
+            border-radius: 50%;
+            box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.9);
+        }
+
+        .car-accent {
+            position: absolute;
+            bottom: 28%;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, var(--accent-red) 15%, var(--accent-red) 85%, transparent);
+            box-shadow: 0 0 25px rgba(230, 57, 70, 0.7);
+        }
+
+        .car-door-line {
+            position: absolute;
+            top: 35%;
+            left: 40%;
+            width: 25%;
+            height: 50%;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @keyframes carFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ============ PERFORMANCE SECTION ============ */
+        .performance {
+            position: relative;
+            padding: 6rem 3rem;
+            background: linear-gradient(180deg, var(--primary-dark) 0%, #1a1f3a 100%);
+            overflow: hidden;
+        }
+
+        .performance::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        }
+
+        .performance-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .performance-title {
+            text-align: center;
+            font-size: 2.5rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 4rem;
+            opacity: 0;
+        }
+
+        .performance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .perf-card {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .perf-value {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent-red);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .perf-label {
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        /* ============ DESIGN SECTION ============ */
+        .design {
+            position: relative;
+            padding: 6rem 3rem;
+            background: var(--primary-dark);
+            overflow: hidden;
+        }
+
+        .design::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
+        }
+
+        .design-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .design-title {
+            font-size: 2.5rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 3rem;
+            text-align: center;
+            opacity: 0;
+        }
+
+        .design-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .design-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(230, 57, 70, 0.2);
+            padding: 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .design-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(230, 57, 70, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .design-card:hover::before {
+            left: 100%;
+        }
+
+        .design-card:hover {
+            background: rgba(230, 57, 70, 0.1);
+            border-color: var(--accent-red);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(230, 57, 70, 0.2);
+        }
+
+        .design-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .design-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .design-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ============ INTERIOR SECTION ============ */
+        .interior {
+            position: relative;
+            padding: 6rem 3rem;
+            background: linear-gradient(180deg, var(--primary-dark) 0%, #1a1f3a 100%);
+            overflow: hidden;
+        }
+
+        .interior::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        }
+
+        .interior-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .interior-title {
+            font-size: 2.5rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 3rem;
+            text-align: center;
+            opacity: 0;
+        }
+
+        .interior-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .interior-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, rgba(230, 57, 70, 0.1), rgba(212, 175, 55, 0.05));
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+        .interior-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(230, 57, 70, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .interior-item:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, rgba(230, 57, 70, 0.2), rgba(212, 175, 55, 0.1));
+            border-color: var(--accent-red);
+        }
+
+        .interior-item:hover::before {
+            opacity: 1;
+        }
+
+        .interior-content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+        }
+
+        .interior-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .interior-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ============ CONFIGURATOR SECTION ============ */
+        .configurator {
+            position: relative;
+            padding: 6rem 3rem;
+            background: var(--primary-dark);
+            overflow: hidden;
+        }
+
+        .configurator::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
+        }
+
+        .configurator-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .configurator-title {
+            font-size: 2.5rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 3rem;
+            text-align: center;
+            opacity: 0;
+        }
+
+        .config-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .config-controls {
+            opacity: 0;
+        }
+
+        .config-group {
+            margin-bottom: 2.5rem;
+        }
+
+        .config-group label {
+            display: block;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+        }
+
+        .config-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .config-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(230, 57, 70, 0.3);
+            color: var(--text-light);
+            cursor: pointer;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .config-btn:hover {
+            background: rgba(230, 57, 70, 0.2);
+            border-color: var(--accent-red);
+        }
+
+        .config-btn.active {
+            background: var(--accent-red);
+            border-color: var(--accent-red);
+        }
+
+        .config-preview {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(135deg, rgba(230, 57, 70, 0.1), rgba(212, 175, 55, 0.05));
+            border: 1px solid rgba(230, 57, 70, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            opacity: 0;
+        }
+
+        .car-preview {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .car-preview-main {
+            width: 300px;
+            height: 150px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-radius: 70% 70% 35% 35%;
+            box-shadow: 
+                inset -20px -20px 40px rgba(0, 0, 0, 0.8),
+                inset 15px 15px 30px rgba(255, 255, 255, 0.1),
+                0 15px 40px rgba(230, 57, 70, 0.3);
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .car-preview-main.red {
+            background: linear-gradient(135deg, #8b1a1a, #c41e3a);
+        }
+
+        .car-preview-main.black {
+            background: linear-gradient(135deg, #0a0a0a, #1a1a2e);
+        }
+
+        .car-preview-main.silver {
+            background: linear-gradient(135deg, #c0c0c0, #e8e8e8);
+        }
+
+        .car-preview-main.white {
+            background: linear-gradient(135deg, #f5f5f5, #ffffff);
+        }
+
+        .car-preview-main.blue {
+            background: linear-gradient(135deg, #1a3a52, #2563eb);
+        }
+
+        .car-preview-main.green {
+            background: linear-gradient(135deg, #1a3a2e, #2d7d4a);
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            position: relative;
+            padding: 4rem 3rem;
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 1px solid rgba(230, 57, 70, 0.2);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
+        }
+
+        .footer-brand {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .footer-presenter {
+            font-size: 0.95rem;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-divider {
+            width: 100px;
+            height: 2px;
+            background: var(--accent-red);
+            margin: 1rem auto 1rem;
+            opacity: 0.5;
+        }
+
+        /* ============ SCROLL ANIMATIONS ============ */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .scroll-animate.in-view {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .scroll-animate-stagger:nth-child(1) { transition-delay: 0s; }
+        .scroll-animate-stagger:nth-child(2) { transition-delay: 0.1s; }
+        .scroll-animate-stagger:nth-child(3) { transition-delay: 0.2s; }
+        .scroll-animate-stagger:nth-child(4) { transition-delay: 0.3s; }
+        .scroll-animate-stagger:nth-child(5) { transition-delay: 0.4s; }
+
+        /* ============ CURSOR ============ */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent-red);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            display: none;
+            left: -10px;
+            top: -10px;
+            transition: all 0.1s ease-out;
+        }
+
+        .cursor.active {
+            display: block;
+        }
+
+        .cursor-dot {
+            width: 4px;
+            height: 4px;
+            background: var(--accent-red);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @media (max-width: 768px) {
+            .cursor {
+                display: none !important;
+            }
+        }
+
+        /* ============ UTILITIES ============ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        @supports (scroll-behavior: smooth) {
+            html {
+                scroll-behavior: smooth;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">Aura++ Motors</div>
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#performance">Performance</a></li>
+            <li><a href="#design">Design</a></li>
+            <li><a href="#interior">Interior</a></li>
+            <li><a href="#configurator">Configure</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-bg"></div>
+        <canvas id="heroCanvas" class="hero-canvas"></canvas>
+        
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>THE ART OF<br>PERFORMANCE.</h1>
+                <p>Precision engineered. Designed to move.</p>
+                <div class="hero-presenter">Presented by Divyanshu Kumawat</div>
+            </div>
+            <div class="hero-cta">
+                <button class="btn btn-primary">Explore The Car</button>
+                <button class="btn btn-secondary">Build Your Dream Car</button>
+            </div>
+        </div>
+
+        <div class="hero-car">
+            <div class="car-3d">
+                <div class="car-shadow"></div>
+                <div class="car-body">
+                    <div class="car-main">
+                        <div class="car-windshield"></div>
+                        <div class="car-hood"></div>
+                        <div class="car-headlight-left"></div>
+                        <div class="car-headlight-right"></div>
+                        <div class="car-wheel-left"></div>
+                        <div class="car-wheel-right"></div>
+                        <div class="car-accent"></div>
+                        <div class="car-door-line"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Section -->
+    <section id="performance" class="performance">
+        <div class="performance-container">
+            <h2 class="performance-title scroll-animate">PURE PERFORMANCE</h2>
+            <div class="performance-grid">
+                <div class="perf-card scroll-animate-stagger">
+                    <div class="perf-value" data-target="3.2">0.0</div>
+                    <div class="perf-label">0–100 KM/H</div>
+                </div>
+                <div class="perf-card scroll-animate-stagger">
+                    <div class="perf-value" data-target="315">0</div>
+                    <div class="perf-label">Top Speed</div>
+                </div>
+                <div class="perf-card scroll-animate-stagger">
+                    <div class="perf-value" data-target="650">0</div>
+                    <div class="perf-label">Horsepower</div>
+                </div>
+                <div class="perf-card scroll-animate-stagger">
+                    <div class="perf-value" data-target="800">0</div>
+                    <div class="perf-label">Torque (Nm)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Section -->
+    <section id="design" class="design">
+        <div class="design-container">
+            <h2 class="design-title scroll-animate">ENGINEERED EXCELLENCE</h2>
+            <div class="design-grid">
+                <div class="design-card scroll-animate-stagger">
+                    <div class="design-icon">🏗️</div>
+                    <h3>Aerodynamics</h3>
+                    <p>Every curve calculated for maximum efficiency and minimal drag.</p>
+                </div>
+                <div class="design-card scroll-animate-stagger">
+                    <div class="design-icon">⚡</div>
+                    <h3>Performance</h3>
+                    <p>Twin-turbocharged V12 engine delivering raw power and precision.</p>
+                </div>
+                <div class="design-card scroll-animate-stagger">
+                    <div class="design-icon">🎯</div>
+                    <h3>Lightweight Construction</h3>
+                    <p>Carbon fiber chassis reduces weight without compromising strength.</p>
+                </div>
+                <div class="design-card scroll-animate-stagger">
+                    <div class="design-icon">🛞</div>
+                    <h3>Advanced Suspension</h3>
+                    <p>Adaptive air suspension responds to road conditions in real-time.</p>
+                </div>
+                <div class="design-card scroll-animate-stagger">
+                    <div class="design-icon">🛑</div>
+                    <h3>Braking System</h3>
+                    <p>Ceramic disc brakes with advanced regenerative technology.</p>
+                </div>
+                <div class="design-card scroll-animate-stagger">
+                    <div class="design-icon">💡</div>
+                    <h3>LED Lighting</h3>
+                    <p>Adaptive intelligent lighting for ultimate visibility and style.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interior Section -->
+    <section id="interior" class="interior">
+        <div class="interior-container">
+            <h2 class="interior-title scroll-animate">LUXURY INTERIOR</h2>
+            <div class="interior-grid">
+                <div class="interior-item scroll-animate-stagger">
+                    <div class="interior-content">
+                        <h3>Premium Seats</h3>
+                        <p>Hand-stitched leather with memory foam support</p>
+                    </div>
+                </div>
+                <div class="interior-item scroll-animate-stagger">
+                    <div class="interior-content">
+                        <h3>Steering Wheel</h3>
+                        <p>Carbon fiber & leather with haptic feedback</p>
+                    </div>
+                </div>
+                <div class="interior-item scroll-animate-stagger">
+                    <div class="interior-content">
+                        <h3>Digital Dashboard</h3>
+                        <p>6K curved display with real-time telemetry</p>
+                    </div>
+                </div>
+                <div class="interior-item scroll-animate-stagger">
+                    <div class="interior-content">
+                        <h3>Ambient Lighting</h3>
+                        <p>2048 color RGB system, customizable</p>
+                    </div>
+                </div>
+                <div class="interior-item scroll-animate-stagger">
+                    <div class="interior-content">
+                        <h3>Sound System</h3>
+                        <p>Spatial audio with 18 speakers, 1200W</p>
+                    </div>
+                </div>
+                <div class="interior-item scroll-animate-stagger">
+                    <div class="interior-content">
+                        <h3>Climate Control</h3>
+                        <p>Tri-zone automatic with air purification</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Configurator Section -->
+    <section id="configurator" class="configurator">
+        <div class="configurator-container">
+            <h2 class="configurator-title scroll-animate">BUILD YOUR DREAM CAR</h2>
+            <div class="config-content">
+                <div class="config-controls scroll-animate">
+                    <div class="config-group">
+                        <label>Paint Color</label>
+                        <div class="config-options">
+                            <button class="config-btn active" data-color="default" data-paint="Midnight Black">Midnight Black</button>
+                            <button class="config-btn" data-color="red" data-paint="Racing Red">Racing Red</button>
+                            <button class="config-btn" data-color="silver" data-paint="Arctic Silver">Arctic Silver</button>
+                            <button class="config-btn" data-color="white" data-paint="Pearl White">Pearl White</button>
+                            <button class="config-btn" data-color="blue" data-paint="Ocean Blue">Ocean Blue</button>
+                            <button class="config-btn" data-color="green" data-paint="Forest Green">Forest Green</button>
+                        </div>
+                    </div>
+
+                    <div class="config-group">
+                        <label>Wheel Design</label>
+                        <div class="config-options">
+                            <button class="config-btn active" data-wheel="Sport">Sport</button>
+                            <button class="config-btn" data-wheel="Performance">Performance</button>
+                            <button class="config-btn" data-wheel="Carbon">Carbon</button>
+                        </div>
+                    </div>
+
+                    <div class="config-group">
+                        <label>Interior Trim</label>
+                        <div class="config-options">
+                            <button class="config-btn active" data-interior="Black">Black</button>
+                            <button class="config-btn" data-interior="Tan">Tan</button>
+                            <button class="config-btn" data-interior="Red">Red</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="config-preview scroll-animate">
+                    <div class="car-preview">
+                        <div class="car-preview-main"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-brand">Aura++ Motors</div>
+        <div class="footer-presenter">Presented by Divyanshu Kumawat</div>
+        <div class="footer-divider"></div>
+        <p>&copy; 2024 Aura++ Motors. Pure Performance. Pure Excellence.</p>
+        <p style="margin-top: 1rem; font-size: 0.8rem;">Premium luxury automotive design experience | Porsche-Inspired Engineering</p>
+    </footer>
+
+    <!-- Custom Cursor -->
+    <div class="cursor active">
+        <div class="cursor-dot"></div>
+    </div>
+
+    <script>
+        // ============ CONFIGURATION ============
+        const CONFIG = {
+            particleCount: window.innerWidth > 768 ? 50 : 20,
+            mouseTrackingStrength: 0.1,
+            scrollAnimationThreshold: 0.3,
+            cursorEnabled: window.innerWidth > 768
+        };
+
+        // ============ CANVAS ANIMATION ============
+        class CanvasAnimation {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.particles = [];
+                this.mouse = { x: 0, y: 0 };
+                
+                this.resize();
+                this.initParticles();
+                this.animate();
+                
+                window.addEventListener('resize', () => this.resize());
+                document.addEventListener('mousemove', (e) => {
+                    this.mouse.x = e.clientX;
+                    this.mouse.y = e.clientY;
+                });
+            }
+
+            resize() {
+                this.canvas.width = this.canvas.offsetWidth;
+                this.canvas.height = this.canvas.offsetHeight;
+            }
+
+            initParticles() {
+                this.particles = [];
+                for (let i = 0; i < CONFIG.particleCount; i++) {
+                    this.particles.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5,
+                        size: Math.random() * 1.5,
+                        opacity: Math.random() * 0.5 + 0.2
+                    });
+                }
+            }
+
+            update() {
+                const w = this.canvas.width;
+                const h = this.canvas.height;
+
+                this.particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    if (p.x < 0) p.x = w;
+                    if (p.x > w) p.x = 0;
+                    if (p.y < 0) p.y = h;
+                    if (p.y > h) p.y = 0;
+
+                    const dx = p.x - this.mouse.x;
+                    const dy = p.y - this.mouse.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 200) {
+                        const angle = Math.atan2(dy, dx);
+                        p.vx -= Math.cos(angle) * 0.1;
+                        p.vy -= Math.sin(angle) * 0.1;
+                    }
+
+                    p.vx *= 0.99;
+                    p.vy *= 0.99;
+                });
+            }
+
+            draw() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+                // Draw gradient
+                const gradient = this.ctx.createLinearGradient(0, 0, 0, this.canvas.height);
+                gradient.addColorStop(0, 'rgba(10, 14, 39, 0.3)');
+                gradient.addColorStop(1, 'rgba(26, 31, 58, 0.5)');
+                this.ctx.fillStyle = gradient;
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+                // Draw particles
+                this.particles.forEach(p => {
+                    this.ctx.fillStyle = `rgba(230, 57, 70, ${p.opacity})`;
+                    this.ctx.beginPath();
+                    this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    this.ctx.fill();
+                });
+
+                // Draw light streaks
+                this.ctx.strokeStyle = 'rgba(255, 150, 0, 0.1)';
+                this.ctx.lineWidth = 1;
+                for (let i = 0; i < 3; i++) {
+                    const x = (Date.now() * 0.1 + i * this.canvas.width / 3) % this.canvas.width;
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(x, 0);
+                    this.ctx.lineTo(x + 100, this.canvas.height);
+                    this.ctx.stroke();
+                }
+            }
+
+            animate() {
+                this.update();
+                this.draw();
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        // ============ SCROLL ANIMATION ============
+        class ScrollAnimator {
+            constructor() {
+                this.elements = document.querySelectorAll('.scroll-animate');
+                this.observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('in-view');
+                            }
+                        });
+                    },
+                    { threshold: CONFIG.scrollAnimationThreshold }
+                );
+
+                this.elements.forEach(el => this.observer.observe(el));
+            }
+        }
+
+        // ============ PERFORMANCE COUNTER ============
+        class PerformanceCounter {
+            constructor() {
+                this.counters = document.querySelectorAll('.perf-value');
+                this.hasAnimated = false;
+                this.observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting && !this.hasAnimated) {
+                                this.animateCounters();
+                                this.hasAnimated = true;
+                            }
+                        });
+                    },
+                    { threshold: 0.5 }
+                );
+
+                this.observer.observe(document.querySelector('.performance'));
+            }
+
+            animateCounters() {
+                this.counters.forEach(counter => {
+                    const target = parseFloat(counter.dataset.target);
+                    const duration = 2000;
+                    const start = Date.now();
+
+                    const animate = () => {
+                        const elapsed = Date.now() - start;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const current = target * progress;
+
+                        if (target < 10) {
+                            counter.textContent = current.toFixed(1);
+                        } else {
+                            counter.textContent = Math.floor(current);
+                        }
+
+                        if (progress < 1) {
+                            requestAnimationFrame(animate);
+                        }
+                    };
+
+                    animate();
+                });
+            }
+        }
+
+        // ============ CONFIGURATOR ============
+        class Configurator {
+            constructor() {
+                this.colorBtns = document.querySelectorAll('[data-color]');
+                this.wheelBtns = document.querySelectorAll('[data-wheel]');
+                this.interiorBtns = document.querySelectorAll('[data-interior]');
+                this.preview = document.querySelector('.car-preview-main');
+
+                this.currentColor = 'default';
+                this.currentWheel = 'Sport';
+                this.currentInterior = 'Black';
+
+                this.setupEventListeners();
+            }
+
+            setupEventListeners() {
+                this.colorBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        this.colorBtns.forEach(b => b.classList.remove('active'));
+                        e.target.classList.add('active');
+                        this.currentColor = e.target.dataset.color;
+                        this.updatePreview();
+                    });
+                });
+
+                this.wheelBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        this.wheelBtns.forEach(b => b.classList.remove('active'));
+                        e.target.classList.add('active');
+                        this.currentWheel = e.target.dataset.wheel;
+                        this.updatePreview();
+                    });
+                });
+
+                this.interiorBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        this.interiorBtns.forEach(b => b.classList.remove('active'));
+                        e.target.classList.add('active');
+                        this.currentInterior = e.target.dataset.interior;
+                        this.updatePreview();
+                    });
+                });
+            }
+
+            updatePreview() {
+                this.preview.className = 'car-preview-main';
+                this.preview.classList.add(this.currentColor);
+            }
+        }
+
+        // ============ NAVIGATION ============
+        class Navigation {
+            constructor() {
+                this.navbar = document.getElementById('navbar');
+                this.window = window;
+                
+                this.window.addEventListener('scroll', () => this.handleScroll());
+            }
+
+            handleScroll() {
+                if (this.window.scrollY > 50) {
+                    this.navbar.classList.add('scrolled');
+                } else {
+                    this.navbar.classList.remove('scrolled');
+                }
+            }
+        }
+
+        // ============ CUSTOM CURSOR ============
+        class CustomCursor {
+            constructor() {
+                if (!CONFIG.cursorEnabled) return;
+
+                this.cursor = document.querySelector('.cursor');
+                this.x = 0;
+                this.y = 0;
+
+                document.addEventListener('mousemove', (e) => this.move(e));
+                document.addEventListener('mouseenter', () => this.show());
+                document.addEventListener('mouseleave', () => this.hide());
+            }
+
+            move(e) {
+                this.x = e.clientX;
+                this.y = e.clientY;
+                this.cursor.style.left = (this.x - 10) + 'px';
+                this.cursor.style.top = (this.y - 10) + 'px';
+
+                // Check if hovering over interactive elements
+                const target = document.elementFromPoint(this.x, this.y);
+                if (target && (target.tagName === 'BUTTON' || target.classList.contains('config-btn'))) {
+                    this.cursor.style.transform = 'scale(1.5)';
+                    this.cursor.style.borderColor = '#ff6b6b';
+                } else {
+                    this.cursor.style.transform = 'scale(1)';
+                    this.cursor.style.borderColor = '#e63946';
+                }
+            }
+
+            show() {
+                this.cursor.style.display = 'block';
+            }
+
+            hide() {
+                this.cursor.style.display = 'none';
+            }
+        }
+
+        // ============ MOUSE INTERACTION ============
+        class MouseInteraction {
+            constructor() {
+                this.carBody = document.querySelector('.car-body');
+                this.mouse = { x: 0, y: 0 };
+                this.center = { x: 0, y: 0 };
+
+                this.updateCenter();
+                window.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+                window.addEventListener('resize', () => this.updateCenter());
+            }
+
+            updateCenter() {
+                if (this.carBody) {
+                    const rect = this.carBody.getBoundingClientRect();
+                    this.center.x = rect.left + rect.width / 2;
+                    this.center.y = rect.top + rect.height / 2;
+                }
+            }
+
+            handleMouseMove(e) {
+                if (!this.carBody) return;
+
+                this.mouse.x = e.clientX;
+                this.mouse.y = e.clientY;
+
+                const dx = (this.mouse.x - this.center.x) / this.center.x;
+                const dy = (this.mouse.y - this.center.y) / this.center.y;
+
+                const rotateX = dy * 20;
+                const rotateY = dx * -20;
+
+                this.carBody.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            }
+        }
+
+        // ============ INITIALIZE ============
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('heroCanvas');
+            if (canvas) {
+                new CanvasAnimation(canvas);
+            }
+
+            new ScrollAnimator();
+            new PerformanceCounter();
+            new Configurator();
+            new Navigation();
+            new CustomCursor();
+            new MouseInteraction();
+
+            // Smooth scroll for buttons
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // Button interactions
+            document.querySelectorAll('.btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (this.classList.contains('btn-secondary')) {
+                        document.querySelector('#configurator').scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // Interior item hover effects
+            document.querySelectorAll('.interior-item').forEach(item => {
+                item.addEventListener('mousemove', (e) => {
+                    const rect = item.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width) * 100;
+                    const y = ((e.clientY - rect.top) / rect.height) * 100;
+                    item.style.setProperty('--x', x + '%');
+                    item.style.setProperty('--y', y + '%');
+                });
+            });
+        });
+
+        // Prevent layout shift on scroll
+        document.documentElement.style.scrollPaddingTop = '80px';
+    </script>
+</body>
+</html>
